@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eP.Models;
-using eProduct.Models;
+using eP.Models;
 
 namespace eP.Controllers
 {

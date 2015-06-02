@@ -289,6 +289,7 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Products\Compliance.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

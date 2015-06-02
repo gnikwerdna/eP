@@ -4,11 +4,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listing</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr><th> Item Name:</th><th> Product Group:</th><th>Pronto Part No</th></tr>
+        <tr>
+            <td>
+                @Html.TextBox("SearchString")
+            </td>
+            <td>
+                @Html.TextBox("SearchProductGroup")
+            </td>
+            <td>
+                @Html.TextBox("SearchProntoPartNum")
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="filter" />
+}
 <table class="table">
     <tr>
         <th>
@@ -20,8 +38,9 @@
 
 @foreach (var item in Model) {
     <tr>
+       
         <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
+            @Html.ActionLink("Compliance Wizard", "Compliance", new { id = item.ProductID }) |  @Html.DisplayFor(modelItem => item.ProductName)
         </td>
        
         <td>
