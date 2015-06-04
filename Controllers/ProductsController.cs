@@ -22,6 +22,35 @@ namespace eP.Controllers
             return View(db.Products.ToList());
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public ActionResult ComplianceForm(int? id)
+        {
+            Product product = db.Products.Find(id);
+            return View(product);
+
+        }
+        private void popassignedcomplianceForm(Product product)
+        {
+            var allCompliance = from a in db.ComplianceForms  select a;
+            //var allCompliance = db.compliance;
+            var productcompliance = new HashSet<int>(product.ComplianceForm.Select(c => c.ComplianceFormId));
+            var viewModel = new List<AssignedComplianceFormData>();
+
+            foreach (var compliance in allCompliance)
+            {
+                viewModel.Add(new AssignedComplianceFormData
+                {
+                   ComplianceFormId = compliance.ComplianceFormId,
+                   FormName = compliance.FormName,
+                   Description = compliance.Description
+                });
+
+
+            }
+            ViewBag.compliance = viewModel;
+
+
+        }
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public ActionResult Compliance(int? id)
         {
             if (id == null)
@@ -112,19 +141,19 @@ namespace eP.Controllers
        }
         
         
-        private void ResetProducts(string[] selectedCourses, Product instructorToUpdate)
+        private void ResetProducts(string[] selectedComplinance, Product ProductToUpdate)
         {
-            if (selectedCourses == null)
+            if (selectedComplinance == null)
             {
-                instructorToUpdate.Compliance = new List<Compliance>();
+                ProductToUpdate.Compliance = new List<Compliance>();
                 return;
             }
-            var selectedCoursesHS = new HashSet<string>(selectedCourses);
-            var instructorCourses = new HashSet<int>
-                (instructorToUpdate.Compliance.Select(c => c.ComplianceID));
-            foreach (var course in db.compliance)
+            var selectedComplianceHS = new HashSet<string>(selectedComplinance);
+            var productCompliance = new HashSet<int>
+                (ProductToUpdate.Compliance.Select(c => c.ComplianceID));
+            foreach (var compliance in db.compliance)
             {
-                instructorToUpdate.Compliance.Remove(course);
+                ProductToUpdate.Compliance.Remove(compliance);
             }
         }
 

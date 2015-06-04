@@ -9,7 +9,7 @@ namespace eP.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(eP.Models.ProductDBContext context)

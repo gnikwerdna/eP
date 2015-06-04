@@ -33,6 +33,7 @@ namespace eP.Models
         public int[] CItemIds { get; set; }
         public virtual ICollection<File> Files { get; set; }
         public virtual ICollection<Compliance> Compliance { get; set; }
+        public virtual ICollection<ComplianceForm> ComplianceForm { get; set; }
 
 
     }

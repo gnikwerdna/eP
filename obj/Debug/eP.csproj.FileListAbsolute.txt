@@ -54,3 +54,4 @@ F:\development\eP\eP\obj\Debug\eP.dll
 F:\development\eP\eP\obj\Debug\eP.pdb
 F:\development\eP\eP\obj\Debug\eP.Migrations.initial.resources
 F:\development\eP\eP\obj\Debug\eP.csproj.GenerateResource.Cache
+F:\development\eP\eP\obj\Debug\eP.csprojResolveAssemblyReference.cache

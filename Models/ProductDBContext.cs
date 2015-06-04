@@ -17,7 +17,7 @@ namespace eP.Models
         public DbSet<Users> users { get; set; }
         public DbSet<UserTypes> usertypes { get; set; }
         public DbSet<Compliance> compliance { get; set; }
-        //public DbSet<ProductCompliance> productcompliance { get; set; }
+        public DbSet<ComplianceTest> ComplianceTest { get; set; }
         public DbSet<ComplianceForm> ComplianceForms { get; set; }
         public DbSet<ProductsToCategoryModel> ProductsToCategoryModel { get; set; }
     }
