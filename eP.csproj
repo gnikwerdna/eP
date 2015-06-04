@@ -171,9 +171,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506020141599_initial.cs" />
-    <Compile Include="Migrations\201506020141599_initial.Designer.cs">
-      <DependentUpon>201506020141599_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201506032314403_initial.cs" />
+    <Compile Include="Migrations\201506032314403_initial.Designer.cs">
+      <DependentUpon>201506032314403_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -187,7 +187,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProdCatSup.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductCompliance.cs" />
     <Compile Include="Models\ProductDBContext.cs" />
     <Compile Include="Models\ProductsToCategoryModel.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -291,7 +290,6 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Products\Compliance.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -299,9 +297,10 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506020141599_initial.resx">
-      <DependentUpon>201506020141599_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506032314403_initial.resx">
+      <DependentUpon>201506032314403_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

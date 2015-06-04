@@ -49,7 +49,7 @@ namespace eP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Compliance(int? id, string[] SelectedComp, string[] SelectedCompSubItem_1, string[] SelectedCompSubItem_2)
+        public ActionResult Compliance(int? id, string[] SelectedComp,  FormCollection frm)
         {
 
 
@@ -68,11 +68,22 @@ namespace eP.Controllers
             {
                 try
                 {
-
-
-                    ResetProducts(SelectedComp, instructorToUpdate);
-                    UpdateInstructorCourses(SelectedComp, instructorToUpdate);
-                    // UpdateInstructorCourses(SelectedCompSubItem_1, instructorToUpdate);
+                    int inc = recordcount();
+                    int a = 0;
+                    string[] strradiobuttonval = new string[inc+1];
+                    foreach (string i in strradiobuttonval)
+                    {
+                       
+                        if (frm["SelectedCompSubItem_" + a] != null)
+                        {
+                            strradiobuttonval[a] = frm["SelectedCompSubItem_" + a];
+                        }
+                        a++;
+                    }
+                    
+                    ResetProducts(strradiobuttonval, instructorToUpdate);
+                   // UpdateProductCompliance(SelectedComp, instructorToUpdate);
+                    UpdateProductCompliance(strradiobuttonval, instructorToUpdate);
                     //UpdateInstructorCourses(SelectedCompSubItem_2, instructorToUpdate);
 
                     db.SaveChanges();
@@ -90,6 +101,17 @@ namespace eP.Controllers
 
         }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       private int recordcount()
+       {
+
+           int count = (from row in db.compliance
+                        where row.subID==0
+             select row).Count();
+           return count;
+
+       }
+        
+        
         private void ResetProducts(string[] selectedCourses, Product instructorToUpdate)
         {
             if (selectedCourses == null)
@@ -106,33 +128,27 @@ namespace eP.Controllers
             }
         }
 
-        private void UpdateInstructorCourses(string[] selectedCourses, Product instructorToUpdate)
+        private void UpdateProductCompliance(string[] selectedCompliance, Product ProductToUpdate)
         {
-            if (selectedCourses == null)
+            if (selectedCompliance == null)
             {
-                instructorToUpdate.Compliance = new List<Compliance>();
+                ProductToUpdate.Compliance = new List<Compliance>();
                 return;
             }
 
-            var selectedCoursesHS = new HashSet<string>(selectedCourses);
-            var instructorCourses = new HashSet<int>
-                (instructorToUpdate.Compliance.Select(c => c.ComplianceID));
-            foreach (var course in db.compliance)
+            var selectedComplianceHS = new HashSet<string>(selectedCompliance);
+            var ProductComplinance = new HashSet<int>
+                (ProductToUpdate.Compliance.Select(c => c.ComplianceID));
+            foreach (var compliance in db.compliance)
             {
-                if (selectedCoursesHS.Contains(course.ComplianceID.ToString()))
+                if (selectedComplianceHS.Contains(compliance.ComplianceID.ToString()))
                 {
-                    if (!instructorCourses.Contains(course.ComplianceID))
+                    if (!ProductComplinance.Contains(compliance.ComplianceID))
                     {
-                        instructorToUpdate.Compliance.Add(course);
+                        ProductToUpdate.Compliance.Add(compliance);
                     }
                 }
-                else
-                {
-                    if (instructorCourses.Contains(course.ComplianceID))
-                    {
-                        // instructorToUpdate.Compliance.Remove(course);
-                    }
-                }
+                
             }
         }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -42,11 +42,8 @@
                                 if (@course.order == 1)
                                 {
                                      @:<div id="@course.order" class="top_@course.grp">
-                                    <input id="@course.order" type="checkbox" 
-                                           name="SelectedComp"
-                                           value="@course.ComplianceID"
-                                           @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                        @course.ComplianceID @:  @course.Title @course.grp 
+                                   
+                                         @course.Title 
                                   }
                                 else if (@course.level >= 2)
                                   {
@@ -57,12 +54,15 @@
                                     else
                                    { 
                                      @:<div id="div_@course.grp" class="@course.grp" >
+                                     @:<label>
                                     }
+                                   
                                     <input id="@course.grp@course.order" type="radio"
                                            name="SelectedCompSubItem_@course.grp"
                                            value="@course.ComplianceID"
                                            @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
                                     @course.ComplianceID @:  @course.Title @course.grp 
+                                    @:</label>
                                     @:</div>
                                   }
                                 @:</div>
